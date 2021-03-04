@@ -16,7 +16,7 @@
         };
 </script>
 
-<Modal />
+<Modal message="this is message from props value" ispromo={true} />
 <main>
     {#each people as person (person.id)}
         <div>
