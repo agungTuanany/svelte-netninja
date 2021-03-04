@@ -1,10 +1,19 @@
 <script>
     let people = [
-            { name: "yoshi", beltcolor: "black", age:25, id: 1 },
+            { name: "bruono", beltcolor: "black", age:25, id: 1 },
             { name: "mario", beltcolor: "orange", age:45, id: 2 },
             { name: "lugi", beltcolor: "brown", age:35, id: 3 },
             { name: "kingpin", beltcolor: "blue", age:25, id: 4 }
         ];
+
+    // 'e' is the 'event-object' we pass on the 'inline-event-handler' to know what button was fired up
+    // you can unassigned the `event-object' as well.
+    // in here is just an example to passing event object on 'inline-event-handler'.
+    const handleClick = (e, id) => {
+            // delete the person from people
+            people = people.filter((person) => person.id != id);
+            console.log(e);
+        };
 </script>
 
 
@@ -13,6 +22,9 @@
         <div>
             <h4>{person.name}</h4>
             <p>{person.age} years old, {person.beltcolor} belt.</p>
+
+            <!-- XXX pass the data with inline function  XXX -->
+            <button on:click={(e) => handleClick(event, person.id)}>delete</button>
         </div>
     {:else}
         <p>There are no people to show ..</p>
