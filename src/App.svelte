@@ -1,4 +1,6 @@
 <script>
+    import Modal from "./components/Modal.svelte";
+
     let people = [
             { name: "bruono", beltcolor: "black", age:25, id: 1 },
             { name: "mario", beltcolor: "orange", age:45, id: 2 },
@@ -12,24 +14,9 @@
             people = people.filter((person) => person.id != id);
             console.log(e);
         };
-
-    let num = 2;
 </script>
 
-
-{#if num >  20}
-    <p>{num} greater than 20 </p>
-{:else if num > 5}
-    <p>{num} greater than 5</p>
-{:else if num === 5}
-    <p>{num} is equal 5</p>
-{:else if num < 5}
-    <p>{num} less than 5</p>
-{:else}
-    <p>please input some number</p>
-{/if}
-<input type="text" bind:value={num}/>
-
+<Modal />
 <main>
     {#each people as person (person.id)}
         <div>
