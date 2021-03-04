@@ -1,37 +1,22 @@
 <script>
-    let inputName = "black";
-    let firstName = "Aroon";
-    let lastName = "Swatch";
-
-    // reactive-value
-    $: fullName = `${firstName} ${lastName}`
-
-    // reactive-statement
-    $: {
-            console.log(inputName);
-            // You can use reactive-value in reactive-statement
-            console.log(fullName);
-        }
-
-    const handleClick = () => {
-            inputName = "orange";
-        };
-
-    const handleInput = (e) => {
-            inputName = e.target.value;
-        };
+    let people = [
+            { name: "yoshi", beltcolor: "black", age:25, id: 1 },
+            { name: "mario", beltcolor: "orange", age:45, id: 2 },
+            { name: "lugi", beltcolor: "brown", age:35, id: 3 },
+            { name: "kingpin", beltcolor: "blue", age:25, id: 4 }
+        ];
 </script>
 
 
 <main>
-    <h1>Hello {fullName} - {inputName}!</h1>
-    <p>{inputName}</p>
-    <button on:click={handleClick}>Update Color</button>
-
-    <input type="text" bind:value={firstName}>
-    <input type="text" bind:value={lastName}>
-    <input type="text" bind:value={inputName}>
-
+    {#each people as person (person.id)}
+        <div>
+            <h4>{person.name}</h4>
+            <p>{person.age} years old, {person.beltcolor} belt.</p>
+        </div>
+    {:else}
+        <p>There are no people to show ..</p>
+    {/each}
 </main>
 
 <style>
