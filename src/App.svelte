@@ -1,16 +1,30 @@
 <script>
     import Header from "./components/headers/Header.svelte";
     import Footer from "./components/footers/Footer.svelte";
+    import Tabs from "./components/shared/Tabs.svelte";
+
+
+    // tabs
+    let items  = ["Current Polls", "Add New Poll"];
+    let activeItem = "Current Polls";
+
+    const tabChangeHandler = (event) => {
+
+            activeItem = event.detail;
+            //console.log(activeItem);
+            //console.log(event);
+        };
+
 </script>
 
 <Header />
 <main>
-    <p>
-    Anyone with write permissions to a project board can link repositories owned
-    by that organization or user account to the project board. For more
-    information, see "Project board permissions for an organization" or
-    "Permission levels for user-owned project boards."
-    </p>
+    <Tabs {activeItem} {items} on:tabChange={tabChangeHandler} />
+    {#if activeItem === "Current Polls"}
+        <p>Poll list components goes here</p>
+    {:else if activeItem === "Add New Poll"}
+        <p>New Poll form components goes here</p>
+    {/if}
 </main>
 <Footer />
 
