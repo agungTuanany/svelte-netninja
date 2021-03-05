@@ -34,7 +34,7 @@
     .secondary {
         background: #45C496;
         color: white;
-        border: 1px solid #D91B42;
+        border: 1px solid #45C496;
     }
 
     .secondary:hover {
