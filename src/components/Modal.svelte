@@ -4,12 +4,12 @@
 </script>
 
 {#if showModal}
-    <div class="backdrop" class:promo={ispromo} >
-    <div class="modal" on:click|self>
-        <slot></slot>
-        <slot name="title"></slot>
+    <div class="backdrop" class:promo={ispromo} on:click|self>
+        <div class="modal">
+            <slot name="title"></slot>
+            <slot></slot>
+        </div>
     </div>
-</div>
 {/if}
 
 <style>
@@ -21,7 +21,7 @@
     }
 
     .modal {
-        padding: 10px;
+        padding: 2.5%;
         border-radius: 10px;
         max-width: 400px;
         margin: 10% auto;

@@ -5,29 +5,43 @@
     let showModal = false;
 
     const toggleModal = () => {
+
             showModal = !showModal;
-        }
+        };
 
     let people = [
             { name: "bruno",    beltColour: "black",    age:25, id: 1 },
             { name: "mario",    beltColour: "orange",   age:45, id: 2 },
             { name: "lugi",     beltColour: "brown",    age:35, id: 3 },
-            { name: "kingpin",  beltColour: "blue",     age:25, id: 4 },
+            { name: "kingpin",  beltColour: "white",    age:25, id: 4 },
             { name: "liam",     beltColour: "",         age:25, id: 5 }
         ];
 
     const handleClick = (e, id) => {
+
             // delete the person from people
             people = people.filter((person) => person.id != id);
             console.log(e);
         };
+
+    const addPerson = (event) => {
+
+            //console.log(event.detail);
+            const person = event.detail;
+            people = [person, ...people];
+            showModal = false;
+        };
 </script>
 
 <Modal showModal={showModal} ispromo={true} on:click={toggleModal}>
-    <AddPersonForm />
+    <div slot="title">
+        <h3><strong>New Ninja</strong></h3>
+    </div>
+    <AddPersonForm on:addPerson={addPerson}/>
 </Modal>
+
 <main>
-    <button class="modal" on:click|once={toggleModal}>open modal</button>
+    <button class="modal" on:click={toggleModal}><strong>open modal</strong></button>
     {#each people as person (person.id)}
         <div>
             <h4>{person.name}</h4>
@@ -35,17 +49,18 @@
                 <strong>Master Ninja</strong>
             {:else if person.beltColour === "orange"}
                 <strong>Tanker Ninja</strong>
-            {:else if person.beltColour === "blue"}
-                <strong>Warrior Ninja</strong>
             {:else if person.beltColour === "brown"}
+                <strong>Warrior Ninja</strong>
+            {:else if person.beltColour === "white"}
                 <strong>Solid Ninja</strong>
             {:else}
                 <strong>'{person.name}' don't have any belt yet</strong>
             {/if}
             <p>{person.age} years old, {person.beltColour} belt.</p>
+            <p>your skills are: <strong>{person.skills}</strong></p>
 
             <!-- XXX pass the data with inline function  XXX -->
-            <button on:click={(e) => handleClick(event, person.id)}>delete</button>
+            <button on:click={(e) => handleClick(e, person.id)}>delete</button>
         </div>
     {:else}
         <p>There are no people to show ..</p>
@@ -72,7 +87,7 @@
         color: white;
         border-radius: 0.375rem;
         text-transform: capitalize;
-        padding: 0.25rem;
+        padding: 0.5rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
