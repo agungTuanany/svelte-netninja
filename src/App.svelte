@@ -1,11 +1,8 @@
 <script>
     import Modal from "./components/Modal.svelte";
 
-    // https://svelte.dev/docs#on_element_event
-    // event-modifiers are basically modifiers that we can tack on to the end of event on certain elements
-    // once - makes sure the event only fire once (removes handles)
-    // preventDefault - prevent the default action (run e.preventDefault())
-    // self - only fires when the event if the clicked element is the target.
+    // https://svelte.dev/docs#slot
+    // '<slot>' is give us a way to pass child content int component and then render that content inside the component
 
     let showModal = false;
 
@@ -14,11 +11,11 @@
         }
 
     let people = [
-            { name: "bruono", beltcolor: "black", age:25, id: 1 },
-            { name: "mario", beltcolor: "orange", age:45, id: 2 },
-            { name: "lugi", beltcolor: "brown", age:35, id: 3 },
-            { name: "kingpin", beltcolor: "blue", age:25, id: 4 },
-            { name: "liam", beltcolor: "", age:25, id: 5 }
+            { name: "bruono",   beltColour: "black",    age:25, id: 1 },
+            { name: "mario",    beltColour: "orange",   age:45, id: 2 },
+            { name: "lugi",     beltColour: "brown",    age:35, id: 3 },
+            { name: "kingpin",  beltColour: "blue",     age:25, id: 4 },
+            { name: "liam",     beltColour: "",         age:25, id: 5 }
         ];
 
     const handleClick = (e, id) => {
@@ -28,24 +25,35 @@
         };
 </script>
 
-<Modal message="this is message from props value" showModal={showModal} ispromo={true} on:click={toggleModal} />
+<Modal showModal={showModal} ispromo={true} on:click={toggleModal}>
+    <!-- <h3>Add a new Person</h3> -->
+    <form>
+        <input type="text" placeholder="name">
+        <input type="text" placeholder="belt colour">
+        <br>
+        <button>Add Person</button>
+    </form>
+    <div slot="title">
+        <h3>Add a new Person</h3>
+    </div>
+</Modal>
 <main>
     <button class="modal" on:click|once={toggleModal}>open modal</button>
     {#each people as person (person.id)}
         <div>
             <h4>{person.name}</h4>
-            {#if person.beltcolor === "black"}
+            {#if person.beltColour === "black"}
                 <strong>Master Ninja</strong>
-            {:else if person.beltcolor === "orange"}
+            {:else if person.beltColour === "orange"}
                 <strong>Tanker Ninja</strong>
-            {:else if person.beltcolor === "blue"}
+            {:else if person.beltColour === "blue"}
                 <strong>Warrior Ninja</strong>
-            {:else if person.beltcolor === "brown"}
+            {:else if person.beltColour === "brown"}
                 <strong>Solid Ninja</strong>
             {:else}
                 <strong>'{person.name}' don't have any belt yet</strong>
             {/if}
-            <p>{person.age} years old, {person.beltcolor} belt.</p>
+            <p>{person.age} years old, {person.beltColour} belt.</p>
 
             <!-- XXX pass the data with inline function  XXX -->
             <button on:click={(e) => handleClick(event, person.id)}>delete</button>
