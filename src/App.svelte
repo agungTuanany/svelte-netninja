@@ -1,8 +1,6 @@
 <script>
     import Modal from "./components/Modal.svelte";
-
-    // https://svelte.dev/docs#slot
-    // '<slot>' is give us a way to pass child content int component and then render that content inside the component
+    import AddPersonForm from "./components/AddPersonForm.svelte";
 
     let showModal = false;
 
@@ -11,7 +9,7 @@
         }
 
     let people = [
-            { name: "bruono",   beltColour: "black",    age:25, id: 1 },
+            { name: "bruno",    beltColour: "black",    age:25, id: 1 },
             { name: "mario",    beltColour: "orange",   age:45, id: 2 },
             { name: "lugi",     beltColour: "brown",    age:35, id: 3 },
             { name: "kingpin",  beltColour: "blue",     age:25, id: 4 },
@@ -26,16 +24,7 @@
 </script>
 
 <Modal showModal={showModal} ispromo={true} on:click={toggleModal}>
-    <!-- <h3>Add a new Person</h3> -->
-    <form>
-        <input type="text" placeholder="name">
-        <input type="text" placeholder="belt colour">
-        <br>
-        <button>Add Person</button>
-    </form>
-    <div slot="title">
-        <h3>Add a new Person</h3>
-    </div>
+    <AddPersonForm />
 </Modal>
 <main>
     <button class="modal" on:click|once={toggleModal}>open modal</button>
