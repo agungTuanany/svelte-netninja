@@ -5,8 +5,8 @@
 </script>
 
 {#if showModal}
-    <div class="backdrop" class:promo={ispromo} on:click>
-    <div class="modal">
+    <div class="backdrop" class:promo={ispromo} >
+    <div class="modal" on:click|self>
         <p>{message}</p>
     </div>
 </div>
@@ -33,4 +33,5 @@
         background: crimson;
         color: white;
     }
+
 </style>

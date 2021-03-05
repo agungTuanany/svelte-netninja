@@ -1,6 +1,12 @@
 <script>
     import Modal from "./components/Modal.svelte";
 
+    // https://svelte.dev/docs#on_element_event
+    // event-modifiers are basically modifiers that we can tack on to the end of event on certain elements
+    // once - makes sure the event only fire once (removes handles)
+    // preventDefault - prevent the default action (run e.preventDefault())
+    // self - only fires when the event if the clicked element is the target.
+
     let showModal = false;
 
     const toggleModal = () => {
@@ -24,7 +30,7 @@
 
 <Modal message="this is message from props value" showModal={showModal} ispromo={true} on:click={toggleModal} />
 <main>
-    <button on:click={toggleModal}>Open Modal</button>
+    <button class="modal" on:click|once={toggleModal}>open modal</button>
     {#each people as person (person.id)}
         <div>
             <h4>{person.name}</h4>
@@ -62,6 +68,16 @@
         text-transform: capitalize;
         font-size: 4em;
         font-weight: 100;
+    }
+
+    .modal {
+        background: orangered;
+        color: white;
+        border-radius: 0.375rem;
+        text-transform: capitalize;
+        padding: 0.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 
     @media (min-width: 640px) {
