@@ -3,7 +3,7 @@
     import Footer from "./components/footers/Footer.svelte";
     import Tabs from "./components/shared/Tabs.svelte";
     import CreatePollForm from "./components/forms/CreatePollForm.svelte";
-    import PollList from "./components/PollList.svelte";
+    import PollList from "./components/polls/PollList.svelte";
 
 
     // tabs
