@@ -1,6 +1,6 @@
 <header>
     <h1>
-        <img src="/assets/images/tujuhexpress_logo.png" alt="Poll Logo">
+        <img src="/assets/images/tujuhexpress_logo.png" alt="Poll Logo" />
     </h1>
 </header>
 

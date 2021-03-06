@@ -10,17 +10,16 @@
 
     // XXX NOTE: change 'id' with 'randomID generator' on production-env. XXX
     const handleSubmit = () => {
-
-            const person = {
-                    name,
-                    beltColour,
-                    age,
-                    skills,
-                    id: Math.random()
-                };
-
-            dispatch("addPerson", person);
+        const person = {
+            name,
+            beltColour,
+            age,
+            skills,
+            id: Math.random()
         };
+
+        dispatch("addPerson", person);
+    };
 </script>
 
 
@@ -31,18 +30,19 @@
         <!-- XXX TODO: age value not be minus XXX -->
         <input type="number" placeholder="age" bind:value={age}>
 
+
         <!-- regular checkbox | disadvantage: use many binding attributes
-            <input class="checkbox" type="checkbox" bind:checked={fighting}>Fighting<br>
-            <input class="checkbox" type="checkbox" bind:checked={sneaking}>Sneaking<br>
-            <input class="checkbox" type="checkbox" bind:checked={running}>Running<br>
-            <input class="checkbox" type="checkbox" bind:checked={jumping}>Jumping<br>
+        <input class="checkbox" type="checkbox" bind:checked={fighting} />Fighting<br>
+        <input class="checkbox" type="checkbox" bind:checked={sneaking} />Sneaking<br>
+        <input class="checkbox" type="checkbox" bind:checked={running} />Running<br>
+        <input class="checkbox" type="checkbox" bind:checked={jumping} />Jumping<br>
         -->
 
         <label for="skills"><strong>Skills:</strong></label>
-        <input class="checkbox" type="checkbox" bind:group={skills} value="fighting">Fighting<br>
-        <input class="checkbox" type="checkbox" bind:group={skills} value="sneaking">Sneaking<br>
-        <input class="checkbox" type="checkbox" bind:group={skills} value="running">Running<br>
-        <input class="checkbox" type="checkbox" bind:group={skills} value="jumping">Jumping<br>
+        <input class="checkbox" type="checkbox" bind:group={skills} value="fighting" />Fighting<br>
+        <input class="checkbox" type="checkbox" bind:group={skills} value="sneaking" />Sneaking<br>
+        <input class="checkbox" type="checkbox" bind:group={skills} value="running" />Running<br>
+        <input class="checkbox" type="checkbox" bind:group={skills} value="jumping" />Jumping<br>
 
         <label for="belt"><strong>Belt colour:</strong></label>
         <select bind:value={beltColour}>
@@ -84,5 +84,4 @@
         margin-top: 0.75rem;
         margin-bottom: 0.75rem;
     }
-
 </style>

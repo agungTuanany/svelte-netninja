@@ -15,7 +15,6 @@
                 <div class:active={item === activeItem}>{item}</div>
             </li>
         {/each}
-
     </ul>
 </div>
 
