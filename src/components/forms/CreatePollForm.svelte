@@ -1,7 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import PollStore from "../../stores/PollStore.js";
 
+    import PollStore from "../../stores/PollStore.js";
     import Button from "../shared/Button.svelte";
 
     let dispatch = createEventDispatcher();

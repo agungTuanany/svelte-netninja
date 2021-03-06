@@ -10,13 +10,14 @@ import { writable } from "svelte/store";
  * those; and add them to data in App.svelte.
  *
  * We don't want to sent data back, we just want to communicate directly with
- * the new Store that we created; so, either we can add a new poll to the Store
- * via the form; or we can update the 'votes' when click on of those options in
- * a polls.
+ * the new Store that we created.
+ *
+ * So, either we can add a new poll to the Store via the form; or we can update
+ * the 'votes' when click on of those options in a polls.
  *
  * We use 'PollStore' as the emitter, to the  'PollList' and 'CreatePollForm';
  * and not depend on App.svelte anymore.
-//}}} */
+  }}} */
 
 const PollStore = writable([
     {
