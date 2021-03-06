@@ -1,11 +1,14 @@
 <script>
-    ///import { onMount, onDestroy } from "svelte";
+    // import { onMount, onDestroy } from "svelte";
+    import { fade, slide, scale } from "svelte/transition";
+    import { flip } from "svelte/animate";
+
 
     import PollStore from "../../stores/PollStore.js"
     import  PollDetails from "./PollDetails.svelte";
 
 
-    /* {{{
+    /* {{{ NOTE:
      * It is always a good idea to unsubscribe from a Store when you no longer
      * need it; when the component destroyed.
      *
@@ -25,6 +28,9 @@
      * and refer to each one as a 'poll'.
      *
      * So, with '$PollStore', it's automatically subscribe us to that data.
+     *
+     * ===== how to use svelte.transition ? =====
+     * We can only use transition on HTML element not on custom-component.
     }}}*/
 
     /* {{{ the convection method to unsubscribe the store.
@@ -47,7 +53,7 @@
 
 <div class="poll-list">
     {#each $PollStore as poll (poll.id)}
-        <div>
+        <div in:fade out:scale|local animate:flip={{duration: 500}}>
             <PollDetails {poll} />
         </div>
     {/each}
