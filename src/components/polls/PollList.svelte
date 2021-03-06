@@ -27,6 +27,7 @@
      * So, with '$PollStore', it's automatically subscribe us to that data.
     }}}*/
 
+    /* {{{ the convection method to unsubscribe the store.
     // export let polls = [];
 
     // const unsub = PollStore.subscribe((data) => {
@@ -39,13 +40,15 @@
     //     unsub;
     // });
 
+    }}} */
+
 </script>
 
 
 <div class="poll-list">
     {#each $PollStore as poll (poll.id)}
         <div>
-            <PollDetails {poll} on:vote />
+            <PollDetails {poll} />
         </div>
     {/each}
 </div>

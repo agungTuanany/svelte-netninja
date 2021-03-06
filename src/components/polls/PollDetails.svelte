@@ -1,9 +1,7 @@
 <script>
-    import { createEventDispatcher } from "svelte";
 
     import Cart from "../shared/Cart.svelte";
-
-    const dispatch  = createEventDispatcher();
+    import PollStore from "../../stores/PollStore.js";
 
     export let poll;
 
@@ -14,7 +12,23 @@
 
     // handling votes
     const handleVote = (option, id) => {
-        dispatch("vote", {option, id});
+
+        PollStore.update((currentPolls) => {
+
+            let copiedPolls = [...currentPolls];
+            let upvotedPoll = copiedPolls.find((poll) => poll.id == id);
+
+            if (option === "a") {
+                upvotedPoll.votesA++;
+            };
+
+            if (option === "b") {
+                upvotedPoll.votesB++;
+            };
+
+            return copiedPolls;
+        });
+
     };
 </script>
 
